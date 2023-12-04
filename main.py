@@ -93,7 +93,7 @@ def generate_html():
     """
 
     # 将HTML内容写入文件
-    with open('index.html', 'w', encoding='utf-8') as f:
+    with open('index.html', 'w+', encoding='utf-8') as f:
         f.write(html_content)
 
 if __name__ == '__main__':
