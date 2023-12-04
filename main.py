@@ -32,7 +32,7 @@ def generate_book_links():
             
             # 生成书籍链接
             if book_title:
-                book_link = f'<li><a href="{folder}/index.html" title="{book_title}">{book_title}</a></li>'
+                book_link = f'<li><a href="{folder}/book/index.html" title="{book_title}">{book_title}</a></li>'
                 book_links.append(book_link)
 
     return '\n'.join(book_links)
