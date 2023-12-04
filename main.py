@@ -1,3 +1,4 @@
+import subprocess
 import os
 import toml 
 
@@ -25,7 +26,8 @@ def generate_book_links():
 
         # 检查是否为文件夹且不以点开头
         if os.path.isdir(folder_path) and not folder.startswith('.'):
-            # 获取书籍标题
+            subprocess.run(['../mdbook', 'build'], cwd=folder_path)
+
             book_title = get_book_title(folder_path)
             
             # 生成书籍链接
