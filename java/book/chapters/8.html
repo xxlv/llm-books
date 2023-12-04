@@ -1,0 +1,309 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>图形用户界面编程 - 1. &quot;Java: A Comprehensive Guide to Systematic Learning&quot;
+2. &quot;Mastering Java: A Systematic Approach to In-Depth Understanding&quot;
+3. &quot;The Ultimate Java Learning Journey: A Systematic Exploration of the Language&quot;
+4. &quot;Java Unleashed: A Comprehensive Guide to Systematic Mastery&quot;
+5. &quot;Java Demystified: A Systematic Approach to Unlocking the Language&#x27;s Secrets&quot;
+6. &quot;The Complete Java Handbook: A Systematic Guide to Mastering the Language&quot;
+7. &quot;Java Revealed: A Systematic Exploration of the Language&#x27;s Inner Workings&quot;
+8. &quot;Java Uncovered: A Systematic Approach to Understanding the Language&#x27;s Core Concepts&quot;
+9. &quot;The Java Mastery Blueprint: A Systematic Guide to Becoming an Expert&quot;
+10. &quot;Java Decoded: A Systematic Journey into the Language&#x27;s Depths&quot;</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../chapters/1.html"><strong aria-hidden="true">1.</strong> Java编程语言概述</a></li><li class="chapter-item expanded "><a href="../chapters/2.html"><strong aria-hidden="true">2.</strong> Java基础知识</a></li><li class="chapter-item expanded "><a href="../chapters/3.html"><strong aria-hidden="true">3.</strong> 面向对象编程</a></li><li class="chapter-item expanded "><a href="../chapters/4.html"><strong aria-hidden="true">4.</strong> Java核心库</a></li><li class="chapter-item expanded "><a href="../chapters/5.html"><strong aria-hidden="true">5.</strong> 异常处理</a></li><li class="chapter-item expanded "><a href="../chapters/6.html"><strong aria-hidden="true">6.</strong> 多线程编程</a></li><li class="chapter-item expanded "><a href="../chapters/7.html"><strong aria-hidden="true">7.</strong> 网络编程</a></li><li class="chapter-item expanded "><a href="../chapters/8.html" class="active"><strong aria-hidden="true">8.</strong> 图形用户界面编程</a></li><li class="chapter-item expanded "><a href="../chapters/9.html"><strong aria-hidden="true">9.</strong> 数据库编程</a></li><li class="chapter-item expanded "><a href="../chapters/10.html"><strong aria-hidden="true">10.</strong> 高级主题</a></li><li class="chapter-item expanded "><a href="../chapters/11.html"><strong aria-hidden="true">11.</strong> Java开发工具和环境</a></li><li class="chapter-item expanded "><a href="../chapters/12.html"><strong aria-hidden="true">12.</strong> Java编程实践</a></li><li class="chapter-item expanded "><a href="../chapters/13.html"><strong aria-hidden="true">13.</strong> Java编程进阶</a></li><li class="chapter-item expanded "><a href="../chapters/14.html"><strong aria-hidden="true">14.</strong> Java编程实例</a></li><li class="chapter-item expanded "><a href="../chapters/15.html"><strong aria-hidden="true">15.</strong> Java编程资源和社区</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">1. &quot;Java: A Comprehensive Guide to Systematic Learning&quot;
+2. &quot;Mastering Java: A Systematic Approach to In-Depth Understanding&quot;
+3. &quot;The Ultimate Java Learning Journey: A Systematic Exploration of the Language&quot;
+4. &quot;Java Unleashed: A Comprehensive Guide to Systematic Mastery&quot;
+5. &quot;Java Demystified: A Systematic Approach to Unlocking the Language&#x27;s Secrets&quot;
+6. &quot;The Complete Java Handbook: A Systematic Guide to Mastering the Language&quot;
+7. &quot;Java Revealed: A Systematic Exploration of the Language&#x27;s Inner Workings&quot;
+8. &quot;Java Uncovered: A Systematic Approach to Understanding the Language&#x27;s Core Concepts&quot;
+9. &quot;The Java Mastery Blueprint: A Systematic Guide to Becoming an Expert&quot;
+10. &quot;Java Decoded: A Systematic Journey into the Language&#x27;s Depths&quot;</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <p>图形用户界面编程是Java编程中的一个重要领域，它允许开发者创建用户友好的界面，并实现交互和动画效果。在本章中，我们将介绍Java中两个主要的图形用户界面库：Swing和JavaFX。</p>
+<ol>
+<li>Swing:
+Swing是Java的标准图形用户界面库，它提供了一套丰富的组件和工具，用于创建各种类型的界面。下面是一个简单的例子，展示了如何使用Swing创建一个基本的窗口：</li>
+</ol>
+<pre><code class="language-java">import javax.swing.*;
+
+public class MyWindow extends JFrame {
+    public MyWindow() {
+        setTitle(&quot;My Window&quot;);
+        setSize(400, 300);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -&gt; new MyWindow());
+    }
+}
+</code></pre>
+<p>在这个例子中，我们创建了一个继承自JFrame的类MyWindow，并在构造函数中设置了窗口的标题、大小和关闭操作。通过调用setVisible(true)，我们使窗口可见。最后，我们使用SwingUtilities.invokeLater()方法来确保窗口在事件调度线程上创建和显示。</p>
+<p>除了基本的窗口，Swing还提供了许多其他的组件，如按钮、文本框、标签等，以及布局管理器来帮助开发者设计和组织界面。</p>
+<ol start="2">
+<li>JavaFX:
+JavaFX是Java平台的下一代图形用户界面库，它提供了更现代化和丰富的功能。下面是一个简单的例子，展示了如何使用JavaFX创建一个带有按钮的界面：</li>
+</ol>
+<pre><code class="language-java">import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+
+public class MyWindow extends Application {
+    public void start(Stage primaryStage) {
+        Button button = new Button(&quot;Click me!&quot;);
+        StackPane root = new StackPane(button);
+        Scene scene = new Scene(root, 300, 200);
+        primaryStage.setTitle(&quot;My Window&quot;);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+}
+</code></pre>
+<p>在这个例子中，我们创建了一个继承自Application的类MyWindow，并在start()方法中创建了一个按钮和一个根布局。然后，我们创建了一个场景，并将根布局添加到场景中。最后，我们设置了窗口的标题、场景，并显示窗口。</p>
+<p>JavaFX提供了许多其他的组件和布局选项，以及丰富的动画和效果功能，使开发者能够创建更具吸引力和交互性的界面。</p>
+<p>通过学习和掌握Swing和JavaFX，读者将能够创建出色的图形用户界面，并实现各种交互和动画效果。这些库为Java开发者提供了强大的工具，使他们能够设计和构建出令人印象深刻的应用程序界面。无论是初学者还是有经验的开发者，掌握图形用户界面编程对于扩展Java编程技能都是非常重要的。</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../chapters/7.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../chapters/9.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../chapters/7.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../chapters/9.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
