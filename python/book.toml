@@ -1,0 +1,6 @@
+[book]
+authors = ["lvxiangxiang"]
+language = "en"
+multilingual = false
+src = "src"
+title = "《Python进阶：深入理解底层原理与细节》"

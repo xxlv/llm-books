@@ -1,0 +1,268 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Python解释器 - 《Python进阶：深入理解底层原理与细节》</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../chapters/1.html" class="active"><strong aria-hidden="true">1.</strong> Python解释器</a></li><li class="chapter-item expanded "><a href="../chapters/2.html"><strong aria-hidden="true">2.</strong> 字节码</a></li><li class="chapter-item expanded "><a href="../chapters/3.html"><strong aria-hidden="true">3.</strong> 内存管理</a></li><li class="chapter-item expanded "><a href="../chapters/4.html"><strong aria-hidden="true">4.</strong> 对象模型</a></li><li class="chapter-item expanded "><a href="../chapters/5.html"><strong aria-hidden="true">5.</strong> 函数调用</a></li><li class="chapter-item expanded "><a href="../chapters/6.html"><strong aria-hidden="true">6.</strong> 迭代器和生成器</a></li><li class="chapter-item expanded "><a href="../chapters/7.html"><strong aria-hidden="true">7.</strong> 元类</a></li><li class="chapter-item expanded "><a href="../chapters/8.html"><strong aria-hidden="true">8.</strong> 装饰器</a></li><li class="chapter-item expanded "><a href="../chapters/9.html"><strong aria-hidden="true">9.</strong> 总结与展望</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">《Python进阶：深入理解底层原理与细节》</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <p>Python解释器是将Python代码转换为机器可执行的指令的软件程序。它负责解析和执行Python代码，并将其转换为底层的机器语言。本章将深入探讨Python解释器的工作原理和内部机制，以帮助读者更好地理解Python语言的执行过程。</p>
+<ol>
+<li>
+<p>解释器的启动过程
+Python解释器的启动过程包括以下几个步骤：</p>
+<ul>
+<li>加载解释器：操作系统加载解释器的二进制文件，并将其加载到内存中。</li>
+<li>解析命令行参数：解释器解析命令行参数，包括要执行的Python脚本文件名和其他选项。</li>
+<li>初始化解释器环境：解释器初始化运行时环境，包括全局变量、内置函数和模块等。</li>
+<li>执行Python代码：解释器按照顺序逐行执行Python代码，并将其转换为底层的机器指令。</li>
+</ul>
+</li>
+<li>
+<p>解释器的执行流程
+Python解释器的执行流程可以分为以下几个阶段：</p>
+<ul>
+<li>词法分析：解释器将源代码分解为一个个的词法单元，如标识符、关键字、运算符等。</li>
+<li>语法分析：解释器根据词法单元构建语法树，以确定代码的结构和语义。</li>
+<li>语义分析：解释器对语法树进行语义分析，包括类型检查、作用域分析等。</li>
+<li>字节码生成：解释器将语法树转换为字节码，以便后续执行。</li>
+<li>字节码执行：解释器按照字节码的指令逐条执行，将其转换为底层的机器指令。</li>
+</ul>
+</li>
+<li>
+<p>解释器的优化技术
+Python解释器还使用了一些优化技术来提高执行效率：</p>
+<ul>
+<li>编译优化：解释器可以将频繁执行的代码片段编译为机器码，以提高执行速度。</li>
+<li>JIT编译：解释器可以使用即时编译技术，在运行时将热点代码编译为机器码，以提高执行速度。</li>
+<li>内存管理优化：解释器使用垃圾回收机制来管理内存，以自动释放不再使用的对象，减少内存占用。</li>
+</ul>
+</li>
+</ol>
+<p>下面是一个简单的例子，演示了Python解释器的执行过程：</p>
+<pre><code class="language-python">def add(a, b):
+    return a + b
+
+result = add(3, 5)
+print(result)
+</code></pre>
+<p>在这个例子中，解释器首先会解析函数定义，并将其存储在内存中。然后，在调用<code>add(3, 5)</code>时，解释器会按照以下步骤执行：</p>
+<ol>
+<li>解析函数调用，确定要调用的函数和传递的参数。</li>
+<li>创建函数的局部作用域，并将参数传递给函数。</li>
+<li>执行函数体中的代码，将结果返回给调用者。</li>
+<li>将返回的结果赋值给<code>result</code>变量。</li>
+<li>执行<code>print(result)</code>语句，将结果输出到控制台。</li>
+</ol>
+<p>通过深入理解Python解释器的工作原理和内部机制，读者可以更好地理解Python语言的执行过程，并优化代码的性能和效率。</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+                            <a rel="next prefetch" href="../chapters/2.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+                    <a rel="next prefetch" href="../chapters/2.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
