@@ -1,0 +1,6 @@
+[book]
+authors = [ "Unknown",]
+language = "en"
+multilingual = false
+src = "src"
+title = "\"Unlocking the Power of WebAssembly: A Journey into the World of wasm\""
