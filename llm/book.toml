@@ -1,0 +1,6 @@
+[book]
+authors = [ "Unknown",]
+language = "en"
+multilingual = false
+src = "src"
+title = "The Language Learner's Mind: Unleashing the Power of LLM Models"
